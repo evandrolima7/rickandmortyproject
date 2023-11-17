@@ -1,0 +1,22 @@
+<div class="menu-container">
+  <div class="menu-header">
+    <h2 class="menu-title">Adventure portal</h2>
+  </div>
+
+  <div class="menu-info">
+    <div class="user-avatar"></div>
+    <p class="menu-username">Hello, {{ username }}!</p>
+  
+  </div>
+
+  <div class="menu-options">
+    <p class="menu-option-description">Discorver new worlds and beings by exploring our roster of characters.</p>
+    <a routerLink="/list" class="menu-link btn btn-primary">Explore Universe</a>
+
+    <p class="menu-option-description">Lear more about yourself and your intergalactic adventures.</p>
+    <a routerLink="/profile" class="menu-link btn btn-success">Galactic Profile</a>
+
+    <p class="menu-option-description">End your session and return to your reality.</p>
+    <button (click)="logout()" class="btn btn-danger">Desconnect</button>
+  </div>
+</div>

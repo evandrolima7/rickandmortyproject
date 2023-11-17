@@ -1,0 +1,26 @@
+
+<div class="profile-container">
+  <div class="profile-header">
+    <h2 class="profile-title">Galactic Profile</h2>
+  </div>
+
+  <div class="profile-info">
+    <img src="../../assets/unnamed.png" class="user-avatar" alt="">
+    <p class="profile-username">{{ userProfile.name }}</p>
+    <p class="profile-user-email">{{ userProfile.email }}</p>
+    <p class="profile-registered">Member since: {{ userProfile.registrationDate | date: 'dd/MM/yyyy a HH:mm:ss' }}</p>
+  </div>
+
+  <div class="profile-details">
+    <h3 class="details-title">Additional Details</h3>
+    <p class="details-item">Status: Alive</p>
+    <p class="details-item">specie: Human</p>
+    <p class="details-item">Location: Earth</p>
+  </div>
+
+  <div class="profile-actions">
+    <button class="btn btn-primary">Edite Profile</button>
+    <button class="btn btn-danger">Change Password</button>
+    <button class="btn btn-success" routerLink="/menu">Go To Menu</button>
+  </div>
+</div>

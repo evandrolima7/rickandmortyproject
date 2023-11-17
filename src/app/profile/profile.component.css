@@ -1,0 +1,65 @@
+.profile-container {
+    max-width: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .profile-header {
+    text-align: center;
+  }
+  
+  .profile-title {
+    color: #007bff;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  
+  .user-avatar {
+    width: 120px;
+    height: 120px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 10px auto;
+  }
+  
+  .profile-username {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .profile-user-email {
+    color: #777;
+  }
+  
+  .profile-registered {
+    color: #28a745; 
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+  }
+  
+  .details-title {
+    color: #333; 
+  }
+  
+  .details-item {
+    margin-bottom: 5px;
+  }
+  
+  .profile-actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .btn {
+    margin: 0 5px;
+  }

@@ -1,0 +1,36 @@
+<div class="header">
+  <img src="../../assets/logo.png" alt="Logo" class="logo">
+</div>
+
+
+<div class="container mt-4">
+  <h2>Welcome, {{ username }}!</h2>
+  <h1 class="mb-4">Rick and Morty Characters</h1>
+
+  <p class="mb-3">
+    <a routerLink="/profile" class="btn btn-outline-secondary mr-2">Profile</a>
+    <a routerLink="/menu" class="btn btn-outline-secondary">Menu</a>
+  </p>
+  
+  <app-search></app-search>
+  
+  <div class="row">
+    <div *ngFor="let character of characters" class="col-md-4 mb-4">
+      <div class="card shadow">
+        <img [src]="character.image" alt="{{ character.name }}" class="card-img-top rounded-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <p class="card-text">Status: {{ character.status }}</p>
+          <p class="card-text">Gender: {{ character.gender }}</p>
+          <p class="card-text">Location: {{ character.location.name }}</p>
+          <button class="btn btn-primary btn-block" (click)="onCharacterClick(character.id)">Details</button>
+          </div>
+        </div>      
+      </div>
+    </div>
+  </div>
+  
+
+<div class="footer">
+  <p>&copy; 2023 Rick and Morty Universe</p>
+</div>

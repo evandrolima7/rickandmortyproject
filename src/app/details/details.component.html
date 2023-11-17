@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2>Character Details</h2>
+
+  <ng-container *ngIf="characterDetails !== undefined">
+    <div class="row">
+      <div class="col-md-4">
+        <img [src]="characterDetails.image" alt="{{ characterDetails.name }}" class="img-fluid">
+      </div>
+      <div class="col-md-8">
+        <h3>{{ characterDetails.name }}</h3>
+        <p>Gender: {{ characterDetails.gender }}</p>
+        <p>Specie: {{ characterDetails.species }}</p>
+        <p>Origin: {{ characterDetails.origin?.name }}</p>
+        <h4>Episodes in which appears:</h4>
+        <ul>
+          <li *ngFor="let episode of episodes">
+            Episode Title:{{ episode.title }}, Episode: {{ episode.episode}}
+          </li>
+        </ul>
+        <h4>Additional Details:</h4>
+        <p>Creation date: {{ characterDetails.created | date:'dd/MM/yyyy a HH:mm:ss'}}</p>
+        <p>Last Update: {{ characterDetails.lastUpdate | date:'medium'}}</p>
+        <button class="btn btn-primary" (click)="onBackClick()">return to list</button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="characterDetails === undefined">
+    <p class="mt-3">No details available for the given character ID.</p>
+  </ng-container>
+</div>
