@@ -1,21 +1,42 @@
-<div class="header">
-  <img src="../../assets/logo.png" alt="Logo" class="logo">
+
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <img src="../../assets/logo.png" alt="Logo" class="logo">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><h2>Welcome, {{ username }}!</h2></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a routerLink="/profile" class="btn btn-outline-secondary mr-2">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/menu" class="btn btn-outline-secondary">Menu</a>
+          </li>
+          </ul>    
+        <form class="d-flex mt-3" role="search">
+          <app-search></app-search>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div>
+  <h1>Rick And Morty characters</h1>
+  <img class="bg" src="../../assets/rick-and-morty-smith-adventures-4k-di.jpg" alt="">
 </div>
 
-
-<div class="container mt-4">
-  <h2>Welcome, {{ username }}!</h2>
-  <h1 class="mb-4">Rick and Morty Characters</h1>
-
-  <p class="mb-3">
-    <a routerLink="/profile" class="btn btn-outline-secondary mr-2">Profile</a>
-    <a routerLink="/menu" class="btn btn-outline-secondary">Menu</a>
-  </p>
-  
-  <app-search></app-search>
-  
+<div class="container">
   <div class="row">
-    <div *ngFor="let character of characters" class="col-md-4 mb-4">
+    <h2>All characters</h2>
+    <div *ngFor="let character of characters" class="col-md-4 mb-4 js-scroll">
       <div class="card shadow">
         <img [src]="character.image" alt="{{ character.name }}" class="card-img-top rounded-top">
         <div class="card-body">
@@ -24,11 +45,11 @@
           <p class="card-text">Gender: {{ character.gender }}</p>
           <p class="card-text">Location: {{ character.location.name }}</p>
           <button class="btn btn-primary btn-block" (click)="onCharacterClick(character.id)">Details</button>
-          </div>
-        </div>      
+        </div>
       </div>
     </div>
   </div>
+</div>
   
 
 <div class="footer">

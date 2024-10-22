@@ -3,7 +3,7 @@ import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../services/auth.service'; // Importe o AuthService
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service'; // Importe o AuthService
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  username: string = ''; // Adicione a propriedade para armazenar o nome do usuário
+  username: string = '';
   characters: any[] = [];
   currentPage = 1;
   searchSubscription: Subscription | undefined;
@@ -23,13 +23,14 @@ export class ListComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private searchService: SearchService,
-    private authService: AuthService // Injete o AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadCharacters();
     this.setupSearchSubscription();
-    this.loadUsername(); // Carregue o nome do usuário ao inicializar o componente
+    this.loadUsername();
+    this.animateScroll(); // Adicione aqui para inicializar animação ao carregar
   }
 
   loadCharacters(): void {
@@ -42,13 +43,13 @@ export class ListComponent implements OnInit {
 
       loadCharactersObservable.subscribe(
         (data: any) => {
-          if (this.searchTerm && this.currentPage === 1) {
-            this.characters = this.searchService.filterCharacters(data.results, this.searchTerm);
-          } else {
-            this.characters = this.characters.concat(data.results);
-          }
+          const newCharacters = this.searchTerm && this.currentPage === 1
+            ? this.searchService.filterCharacters(data.results, this.searchTerm)
+            : data.results;
 
+          this.characters = this.characters.concat(newCharacters);
           this.loading = false;
+          this.animateScroll(); // Chama a função de animação após carregar personagens
         },
         (error: any) => {
           console.error('API Error:', error);
@@ -59,6 +60,30 @@ export class ListComponent implements OnInit {
       if (!this.searchTerm) {
         this.currentPage++;
       }
+    }
+  }
+
+  animateScroll(): void {
+    const sections = document.querySelectorAll('.js-scroll');
+
+    if (sections.length) {
+      const windowMetade = window.innerHeight * 0.6;
+
+      const animaScroll = () => {
+        sections.forEach((section) => {
+          const sectionTop = section.getBoundingClientRect().top - windowMetade;
+          const isSectionVisible = sectionTop < 0;
+
+          if (isSectionVisible) {
+            section.classList.add('ativo');
+          } else if (section.classList.contains('ativo')) {
+            section.classList.remove('ativo');
+          }
+        });
+      };
+
+      animaScroll(); // Verifica a visibilidade no carregamento inicial
+      window.addEventListener('scroll', animaScroll);
     }
   }
 
